@@ -9,10 +9,10 @@
       icon="i-lucide-fast-forward"
       @click="resume"
     />
-    <UButton label="Reset" color="neutral" size="lg" icon="i-lucide-rotate-ccw" @click="reset" />
+    <UButton label="Reset" color="neutral" size="lg" icon="i-lucide-rotate-ccw" @click="resetAll" />
   </div>
 </template>
 
 <script setup lang="ts">
-  const { start, pause, resume, reset } = usePomodoroTimer();
+  const { start, pause, resume, resetAll } = usePomodoroTimer();
 </script>

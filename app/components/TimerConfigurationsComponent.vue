@@ -49,7 +49,7 @@
 
 <script setup lang="ts">
   const customTimerConfig = useCustomTimerConfigStore();
-  const { reset } = usePomodoroTimer();
+  const { resetAll } = usePomodoroTimer();
 
   const workDuration = computed({
     get: () => customTimerConfig.workDuration,
@@ -67,6 +67,6 @@
   });
 
   function handleSave() {
-    reset();
+    resetAll();
   }
 </script>

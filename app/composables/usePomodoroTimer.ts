@@ -74,26 +74,10 @@ function createPomodoroTimer() {
     start();
   }
 
-  function reset() {
-    if (intervalId) clearInterval(intervalId);
-
-    status.value = 'stopped';
-    phase.value = 'work';
-    pomodoroCount.value = 0;
-    workSessionCount.value = 0;
-
-    time.value = workDuration.value;
-
-    toast.add({
-      title: 'Timer was set correctly!',
-      color: 'success',
-    });
-  }
-
   function resetCurrentPhase() {
     if (intervalId) clearInterval(intervalId);
-
     status.value = 'stopped';
+
     time.value =
       phase.value === 'work'
         ? workDuration.value
@@ -102,9 +86,23 @@ function createPomodoroTimer() {
         : longRestDuration.value;
   }
 
+  function resetAll() {
+    if (intervalId) clearInterval(intervalId);
+    status.value = 'stopped';
+    phase.value = 'work';
+    pomodoroCount.value = 0;
+    workSessionCount.value = 0;
+    time.value = workDuration.value;
+
+    toast.add({
+      title: 'Timer was set correctly!',
+      color: 'success',
+    });
+  }
+
   function setPhase(newPhase: Phase) {
     phase.value = newPhase;
-    reset();
+    resetCurrentPhase();
   }
 
   onUnmounted(() => {
@@ -124,7 +122,7 @@ function createPomodoroTimer() {
     start,
     pause,
     resume,
-    reset,
+    resetAll,
     setPhase,
   };
 }
