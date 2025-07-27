@@ -1,4 +1,3 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
@@ -7,6 +6,24 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/image',
     '@nuxt/test-utils',
-    '@nuxt/ui'
-  ]
-})
+    '@nuxt/ui',
+    '@pinia/nuxt',
+    'pinia-plugin-persistedstate/nuxt',
+  ],
+
+  css: ['~/assets/css/main.css'],
+
+  app: {
+    head: {
+      title: 'Pomodoro Timer by DL',
+      htmlAttrs: {
+        lang: 'en',
+      },
+      link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    },
+  },
+
+  ui: {
+    colorMode: true,
+  },
+});
