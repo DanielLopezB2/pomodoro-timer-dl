@@ -1,6 +1,5 @@
 <template>
   <div class="my-10 flex flex-col items-center justify-center px-4 text-center">
-    <!-- Fase actual -->
     <div class="mb-6">
       <h4 class="text-2xl sm:text-3xl md:text-4xl font-black capitalize">
         {{ phase }}
@@ -12,14 +11,17 @@
     >
       <div class="text-center">
         <p class="text-4xl sm:text-5xl font-bold">{{ formattedTime }}</p>
-        <span class="text-xs sm:text-sm">Pomodoro</span>
+        <span class="text-xs sm:text-sm">
+          Work sessions completed:
+          <span class="font-semibold">{{ workSessionCount }}</span>
+        </span>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-  const { formattedTime, phase } = usePomodoroTimer();
+  const { formattedTime, phase, workSessionCount } = usePomodoroTimer();
 
   const phaseBorderClass = computed(() => {
     switch (phase.value) {

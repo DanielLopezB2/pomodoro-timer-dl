@@ -20,6 +20,7 @@ function createPomodoroTimer() {
   const status = ref<Status>('stopped');
   const phase = ref<Phase>('work');
   const pomodoroCount = ref(0);
+  const workSessionCount = ref(0);
 
   let intervalId: NodeJS.Timeout | null = null;
 
@@ -43,11 +44,11 @@ function createPomodoroTimer() {
       } else {
         if (phase.value === 'work') {
           pomodoroCount.value++;
+          workSessionCount.value++;
           phase.value = pomodoroCount.value % 4 === 0 ? 'longRest' : 'rest';
         } else {
           phase.value = 'work';
         }
-
         resetCurrentPhase();
         start();
       }
@@ -79,6 +80,7 @@ function createPomodoroTimer() {
     status.value = 'stopped';
     phase.value = 'work';
     pomodoroCount.value = 0;
+    workSessionCount.value = 0;
 
     time.value = workDuration.value;
 
@@ -118,6 +120,7 @@ function createPomodoroTimer() {
     workDuration,
     restDuration,
     longRestDuration,
+    workSessionCount,
     start,
     pause,
     resume,
