@@ -17,22 +17,22 @@
           <div class="mt-8 flex items-center justify-center gap-10">
             <div class="flex flex-col items-center justify-center gap-2">
               <p class="font-semibold">Work time (min)</p>
-              <UInputNumber :min="1" :max="60" size="lg" />
+              <UInputNumber v-model="workDuration" :min="1" :max="60" size="lg" />
             </div>
 
             <div class="flex flex-col items-center justify-center gap-2">
               <p class="font-semibold">Rest time (min)</p>
-              <UInputNumber :min="1" :max="60" size="lg" />
+              <UInputNumber v-model="restDuration" :min="1" :max="60" size="lg" />
             </div>
 
             <div class="flex flex-col items-center justify-center gap-2">
               <p class="font-semibold">Longest rest time (min)</p>
-              <UInputNumber :min="1" :max="60" size="lg" />
+              <UInputNumber v-model="longRestDuration" :min="1" :max="60" size="lg" />
             </div>
 
             <div class="flex flex-col items-center justify-center gap-2">
               <div class="h-[24px]" />
-              <UButton label="Save" variant="outline" icon="i-lucide-save" />
+              <UButton label="Save" variant="outline" icon="i-lucide-save" @click="handleSave" />
             </div>
           </div>
         </template>
@@ -41,4 +41,26 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  const customTimerConfig = useCustomTimerConfigStore();
+  const { reset } = usePomodoroTimer();
+
+  const workDuration = computed({
+    get: () => customTimerConfig.workDuration,
+    set: val => customTimerConfig.setWorkDuration(val),
+  });
+
+  const restDuration = computed({
+    get: () => customTimerConfig.restDuration,
+    set: val => customTimerConfig.setRestDuration(val),
+  });
+
+  const longRestDuration = computed({
+    get: () => customTimerConfig.longRestDuration,
+    set: val => customTimerConfig.setLongRestDuration(val),
+  });
+
+  function handleSave() {
+    reset();
+  }
+</script>
