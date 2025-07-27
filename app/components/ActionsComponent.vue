@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center justify-center gap-6">
+  <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 flex-wrap">
     <UButton label="Start" size="lg" icon="i-lucide-circle-play" @click="start" />
     <UButton label="Stop" color="error" size="lg" icon="i-lucide-circle-pause" @click="pause" />
     <UButton
